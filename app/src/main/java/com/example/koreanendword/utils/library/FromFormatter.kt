@@ -4,8 +4,8 @@ import com.example.koreanendword.utils.checkEnglish
 import com.example.koreanendword.utils.checkKorean
 import com.example.koreanendword.utils.checkNumber
 
-object FromFormatter {
-    fun format(name: String): String {
+object FromFormatter: Formatter {
+    override fun format(name: String): String {
         val lastName = name[name.length - 1]
 
         if (checkKorean(lastName) || checkEnglish(lastName)) {
