@@ -2,7 +2,7 @@ package com.example.koreanendword
 
 import androidx.lifecycle.ViewModel
 import com.example.koreanendword.utils.KoreanFormat
-import com.example.koreanendword.utils.checkNames
+import com.example.koreanendword.utils.WordGenerators
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +16,7 @@ class KoreanViewModel : ViewModel() {
     val format: StateFlow<List<KoreanFormat>> = _format.asStateFlow()
 
     init {
-        _names.value = checkNames
+        _names.value = WordGenerators.generates(10)
         _format.value = listOf(KoreanFormat.FROM, KoreanFormat.WITH, KoreanFormat.WHO, KoreanFormat.WHAT)
     }
 
