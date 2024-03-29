@@ -1,13 +1,17 @@
 package com.example.koreanendword.utils
 
-object KoreanUtil {
-    fun format(name: String, firstFormat: String, secondFormat: String): String {
-        val lastName = name[name.length - 1]
+import com.example.koreanendword.utils.library.FromFormatter
+import com.example.koreanendword.utils.library.WhatFormatter
+import com.example.koreanendword.utils.library.WhoFormatter
+import com.example.koreanendword.utils.library.WithFormatter
 
-        if (lastName.code < 0xAC00 || lastName.code > 0xD7A3) {
-            return name + secondFormat
+object KoreanUtil {
+    fun format(name: String, type: KoreanFormat): String {
+        return when (type) {
+            KoreanFormat.FROM -> FromFormatter.format(name)
+            KoreanFormat.WITH -> WithFormatter.format(name)
+            KoreanFormat.WHO -> WhoFormatter.format(name)
+            KoreanFormat.WHAT -> WhatFormatter.format(name)
         }
-        val formatValue = if ((lastName.code - 0xAC00) % 28 > 0) firstFormat else secondFormat
-        return name + formatValue
     }
 }
